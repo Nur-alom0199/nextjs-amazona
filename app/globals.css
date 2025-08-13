@@ -60,6 +60,7 @@ body{
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.554 0.135 66.442);
+  --radius: 0.5rem
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -78,11 +79,17 @@ body{
 
 @layer base {
   * {
-    border-color: var(--border);
-    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+   @apply border-b border-border;
   }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+   @apply bg-background text-foreground;
   }
 }
+ @layer utilities {
+     .header-button {
+       @apply cursor-pointer p-1 border border-transparent hover:border-white rounded-[2px];
+     }
+     .h1-bold {
+       @apply font-bold text-2xl lg:text-3xl;
+     }
+   }
