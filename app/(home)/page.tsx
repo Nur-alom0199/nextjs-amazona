@@ -7,6 +7,7 @@ import ProductSlider from '@/components/shared/product/product-slider'
 import { Card, CardContent } from '@/components/ui/card'
 
 
+
    export default async function Page() {
     const categories = (await getAllCategories()).slice(0, 4)
      const newArrivals = await getProductsForCard({
@@ -60,6 +61,7 @@ import { Card, CardContent } from '@/components/ui/card'
        },
      ]
        const todaysDeals = await getProductsByTag({ tag: 'todays-deal' })
+       const bestSellingProducts = await getProductsByTag({ tag: 'best-seller' })
      return (
        <>
         <HomeCarousel items={data.carousels} />
@@ -70,6 +72,16 @@ import { Card, CardContent } from '@/components/ui/card'
             <ProductSlider title={"Today's Deals"} products={todaysDeals} />
           </CardContent>
         </Card>
+
+       <Card className='w-full rounded-none'>
+       <CardContent className='p-4 items-center gap-3'>
+         <ProductSlider
+           title='Best Selling Products'
+           products={bestSellingProducts}
+           hideDetails
+         />
+       </CardContent>
+     </Card>
            
          </div>
        </>
